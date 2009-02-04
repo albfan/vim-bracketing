@@ -97,6 +97,7 @@ vmap }} ¡}!
 " imap XXX ¡();!
 "	default: <M-;>
 imap (; ¡(+);!
+vmap (; ¡(+);!
 "	variables
 "	default: <M-4>
 imap ${ ¡$!

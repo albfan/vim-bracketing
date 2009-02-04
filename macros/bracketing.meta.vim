@@ -95,8 +95,10 @@ vmap <M-f><M-i> ¡nroffi!
 "	typical function call
 "	default: <M-:>
 imap <M-:> ¡(+);!
+vmap <M-:> ¡(+);!
 "	default: <M-;>
 imap <M-;> ¡();!
+vmap <M-;> ¡();!
 "	variables
 "	default: <M-4>
 imap <M-4> ¡$!

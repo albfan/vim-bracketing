@@ -140,7 +140,9 @@ vmap ¡nroffi! "zc\fI<C-R>z\fP<ESC>
 "
 "	typical function call
 imap ¡();!  <C-V>(<C-V>);¡mark!<ESC>F)i
+vmap ¡();!  "zc(<C-R>z)<ESC>F)%i
 imap ¡(+);! <C-V>(  <C-V>);¡mark!<ESC>F i
+vmap ¡(+);! "zc( <C-R>z )<ESC>F)%i
 "	variables
 imap ¡$! $¡{!
 vmap ¡$! "zc${<C-R>z}<ESC>
