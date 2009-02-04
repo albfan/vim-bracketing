@@ -74,7 +74,7 @@ set cpoptions=BeFs
 imap ¡mark! <C-V>«<C-V>»
 vmap ¡mark! "zc<C-V>«<C-R>z<C-V>»<ESC>
 "	jump to next marker
-map ¡jump! /«.*»/<C-M>a:"<ESC>h"myt»h@m<C-M>cf»
+map ¡jump! /«.\{-}»/<C-M>a:"<ESC>h"myt»h@m<C-M>cf»
 imap ¡jump! <ESC>¡jump!
 
 "
