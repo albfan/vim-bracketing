@@ -3,7 +3,7 @@
 
 (C)opyright: Stephen Riehm 1991
 
-The directory tree contains macros for implementing Stephen Riehm's
+This directory tree contains macros for implementing Stephen Riehm's
 bracketing system in vim. These macros should be useful for anyone who
 writes a lot of code or normal text, where brackets and quotes appear
 often.
