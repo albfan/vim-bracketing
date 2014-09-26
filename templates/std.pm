@@ -21,7 +21,7 @@
 #
 #  Administration:
 #
-#    Author:		Stephen Riehm, PC-Plus Computing, Germany
+#    Author:		«your name»
 #    Maintainer:	Author
 #    Creation date:	«today's date»
 #    Version date:	$Id:$

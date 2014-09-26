@@ -1,7 +1,7 @@
 	    Stephen Riehm's Bracketing macro system for Vim
 	    ===============================================
 
-(C)opyleft: Stephen Riehm 1991 - 2000
+(C)opyleft: Stephen Riehm 1991
 
 The directory tree contains macros for implementing Stephen Riehm's
 bracketing system in vim. These macros should be useful for anyone who
@@ -22,5 +22,5 @@ directory.
 Good luck and happy hacking.
 
 Stephen Riehm
-stephen.riehm@bigfoot.com
+Stephen.Riehm@opensauce.de
 2000-01-16

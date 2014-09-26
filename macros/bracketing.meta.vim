@@ -1,7 +1,7 @@
 "	Stephen Riehm's braketing macros for vim
 "
 "	Last Change: 16.01.2000
-"	(C)opyleft: Stephen Riehm 1991 - 2000
+"	(C)opyleft: Stephen Riehm 1991
 "
 
 source ~/bracketing.base.vim
