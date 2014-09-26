@@ -78,7 +78,7 @@ set cpoptions=BeFs
 imap ·mark· <C-V>«<C-V>»
 vmap ·mark· "zc<C-V>«<C-R>z<C-V>»<ESC>
 "	jump to next marker
-map ·jump· /«[^«»]\{-}»/<C-M>a:"<ESC>h"myt»h@m<C-M>cf»
+map ·jump· /«[^«»]\{-}»/<CR>a<C-R>=histdel("search",-1)<CR><BS>:"<ESC>h"myt»h@m<C-M>cf»
 imap ·jump· <ESC>·jump·
 
 "
@@ -164,6 +164,7 @@ map  ·mail· :%s/^[^ <TAB>]*$/> &/<C-M>
 imap ·#comment· <ESC>0i# <ESC>A
 vmap ·#comment· :s/^/# /<C-M>
 map  ·#comment· :s/^/# /<C-M>j
+imap ·#-comment· <ESC>0i# ----- ·mark· -----<ESC>F#·jump·
 imap ·/comment· <ESC>0i// <ESC>A
 vmap ·/comment· :s,^,// ,<C-M>
 map  ·/comment· :s,^,// ,<C-M>j

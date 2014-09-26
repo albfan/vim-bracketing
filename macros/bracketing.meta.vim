@@ -12,20 +12,20 @@ let bracketing_macros_loaded = 1
 "
 "	set a marker (the cursor is left between the marker characters)
 "	default: <M-Del>
-imap <D-F12> ·mark·<ESC>i
-vmap <D-F12> ·mark·
-imap <D-DEL> ·mark·<ESC>i
-vmap <D-DEL> ·mark·
-map  <M-C-D-H> ·mark·
-imap <M-C-D-H> ·mark·
+imap <M-F12>    ·mark·<ESC>i
+vmap <M-F12>    ·mark·
+imap <M-DEL>    ·mark·<ESC>i
+vmap <M-DEL>    ·mark·
+map  <M-C-M-H>  ·mark·
+imap <M-C-M-H>  ·mark·
 "	jump to next marker
 "	default: <Del>
-map  <F12> ·jump·
-imap <F12> ·jump·
-map  <DEL> ·jump·
-imap <DEL> ·jump·
-map  <C-D-H> ·jump·
-imap <C-D-H> ·jump·
+map  <F12>      ·jump·
+imap <F12>      ·jump·
+map  <DEL>      ·jump·
+imap <DEL>      ·jump·
+map  <C-M-H>    ·jump·
+imap <C-M-H>    ·jump·
 
 "
 "	Quoting/bracketting macros
@@ -33,44 +33,44 @@ imap <C-D-H> ·jump·
 "
 "	double quotes
 "	default: <M-">
-imap <S-D-'> ·"·
-vmap <S-D-'> ·"·
+imap <M-"> ·"·
+vmap <M-"> ·"·
 "	single quotes
 "	default: <M-'>
-imap <D-'> ·'·
-vmap <D-'> ·'·
+imap <M-'> ·'·
+vmap <M-'> ·'·
 "	stars
 "	default: <M-*>
-imap <S-D-8> ·*·
-vmap <S-D-8> ·*·
+imap <M-*> ·*·
+vmap <M-*> ·*·
 "	braces
 "	default: <M-(>
-imap <S-D-9> ·(·
-vmap <S-D-9> ·(·
+imap <M-(> ·(·
+vmap <M-(> ·(·
 "	braces - with padding
 "	default: <M-)>
-imap <S-D-0> ·)·
-vmap <S-D-0> ·)·
+imap <M-)> ·)·
+vmap <M-)> ·)·
 "	underlines
 "	default: <M-_>
-imap <S-D--> ·_·
-vmap <S-D--> ·_·
+imap <M-_> ·_·
+vmap <M-_> ·_·
 "	angle-brackets
 "	default: <M-<>
-imap <S-D-,> ·<·
-vmap <S-D-,> ·<·
+imap <M-<> ·<·
+vmap <M-<> ·<·
 "	angle-brackets with padding
 "	default: <M->>
-imap <S-D-.> ·>·
-vmap <S-D-.> ·>·
+imap <M->> ·>·
+vmap <M->> ·>·
 "	square brackets
 "	default: <M-[>
-imap <D-[> ·[·
-vmap <D-[> ·[·
+imap <M-[> ·[·
+vmap <M-[> ·[·
 "	square brackets with padding
 "	default: <M-]>
-imap <D-]> ·]·
-vmap <D-]> ·]·
+imap <M-]> ·]·
+vmap <M-]> ·]·
 "	back-quotes
 "	default: <M-`>
 " not possible on my Mac keyboard :-( (same character as `)
@@ -78,17 +78,19 @@ vmap <D-]> ·]·
 " vmap XXX ·`·
 "	curlie brackets
 "	default: <M-{>
-imap <S-D-[> ·{·
-vmap <S-D-[> ·{·
+imap <M-{> ·{·
+vmap <M-{> ·{·
 "	new block bound by curlie brackets
 "	default: <M-}>
-imap <S-D-]> ·}·
-vmap <S-D-]> ·}·
+imap <M-}> ·}·
+vmap <M-}> ·}·
 "	spaces :-)
 "	default: <M-Space>
 "	(you may have trouble getting this to work - few systems accept it!)
-imap <D--> ·space·
-vmap <D--> ·space·
+imap <M-Space> ·space·
+vmap <M-Space> ·space·
+imap <M--> ·space·
+vmap <M--> ·space·
 "	Nroff bold
 "	default: <M-f><M-b>
 " do you need this on a mac? :-)
@@ -105,34 +107,36 @@ vmap <D--> ·space·
 "
 "	typical function call
 "	default: <M-:>
-imap <D-;> ·();·
-vmap <D-;> ·();·
+imap <M-;> ·();·
+vmap <M-;> ·();·
 "	default: <M-;>
-imap <S-D-;> ·(+);·
-vmap <S-D-;> ·(+);·
+imap <M-:> ·(+);·
+vmap <M-:> ·(+);·
 "	function definition
 "	default: <M-\>
-imap <D-\> ·func·
-vmap <D-\> ·func·
+imap <M-\> ·func·
+vmap <M-\> ·func·
 
 "
 " Special additions:
 "
 "	comment marked lines
 "	default: <M-#>
-imap <S-D-3> ·#comment·
-vmap <S-D-3> ·#comment·
-map  <S-D-3> ·#comment·
+imap <M-#> ·#comment·
+vmap <M-#> ·#comment·
+map  <M-#> ·#comment·
+"       insert a block-header comment line
+imap <M-_><M-#> ·#-comment·
 "	default: <M-/><M-/>
-imap <D-/><D-/> ·/comment·
-vmap <D-/><D-/> ·/comment·
-map  <D-/><D-/> ·/comment·
+imap <M-/><M-/> ·/comment·
+vmap <M-/><M-/> ·/comment·
+map  <M-/><M-/> ·/comment·
 "	uncomment marked lines (strip first few chars)
 "	doesn't work for /* comments */
 "	default: <M-3>
-imap <D-3> ·stripcomment·
-vmap <D-3> ·stripcomment·
-map  <D-3> ·stripcomment·
+imap <M-3> ·stripcomment·
+vmap <M-3> ·stripcomment·
+map  <M-3> ·stripcomment·
 
 "
 " HTML Macros
@@ -140,17 +144,17 @@ map  <D-3> ·stripcomment·
 "
 "	turn the current word into a HTML tag pair, ie b<M-h> -> <b></b>
 "	default: <M-h>
-imap <S-D-h> ·Htag·
-vmap <S-D-h> ·Htag·
+imap <M-h> ·Htag·
+vmap <M-h> ·Htag·
 "
 "	set up a HREF
 "	default: <M-r>
-imap <D-r> ·Href·
-vmap <D-r> ·Href·
+imap <M-r> ·Href·
+vmap <M-r> ·Href·
 "
 "	set up a HREF name (tag)
 "	default: <M-n>
 " you have to type <M-n><Space> to get this to work on a mac (dead key :-( )
-imap <D-n> ·Hname·
-vmap <D-n> ·Hname·
+imap <M-n> ·Hname·
+vmap <M-n> ·Hname·
 
