@@ -1,9 +1,11 @@
 "	Stephen Riehm's braketing macros for vim
 "
 "	Last Change: 16.01.2000
-"	(C)opyleft: Stephen Riehm 1991
+"	(C)opyright: Stephen Riehm 1991
 "
 version 5.5
+
+let bracketing_base_loaded = 1
 
 "	you MAY want to change some settings, or the characters used for the
 "	jump marks - if so, make your changes here
@@ -44,15 +46,17 @@ set cinkeys=0{,0},!^F,o,O
 "		) how far to look for an unclosed bracket (5 lines)
 "		* how far to look for an unclosed comment (15 lines)
 "
-" This is the style I use at work - change it if you want another style
-set cinoptions=>s,e0,n0,}0,^0,:s,=s,ps,ts,(2s,)5,*15,+s,f0,{0
+" if( abc )
+" {
+"    commands;
+" }
+" set cinoptions=>s,e0,n0,}0,^0,:s,=s,ps,ts,(2s,)5,*15,+s,f0,{0
 "
-" The following style indents curlies with the indented code, ie:
-" if( blah )
+" if( abc )
 "    {
-"    blah;
+"    commands;
 "    }
-" set cinoptions=>s,e0,n0,}0,^0,:s,=s,ps,ts,(2s,)5,*15,+s,fs,{s
+"set cinoptions=>s,e0,n0,}0,^0,:s,=s,ps,ts,(2s,)5,*15,+s,fs,{s
 "
 " since the indenting is handle by the macros, you
 " don't need vim to do anything special.
@@ -71,11 +75,11 @@ set cpoptions=BeFs
 "
 "	set a marker (the cursor is left between the marker characters)
 "	This is the place to change the jump marks if you want to
-imap ¡mark! <C-V>«<C-V>»
-vmap ¡mark! "zc<C-V>«<C-R>z<C-V>»<ESC>
+imap ·mark· <C-V>«<C-V>»
+vmap ·mark· "zc<C-V>«<C-R>z<C-V>»<ESC>
 "	jump to next marker
-map ¡jump! /«.\{-}»/<C-M>a:"<ESC>h"myt»h@m<C-M>cf»
-imap ¡jump! <ESC>¡jump!
+map ·jump· /«[^«»]\{-}»/<C-M>a:"<ESC>h"myt»h@m<C-M>cf»
+imap ·jump· <ESC>·jump·
 
 "
 " ========== You should not need to change anything below this line ==========
@@ -86,103 +90,105 @@ imap ¡jump! <ESC>¡jump!
 "	Note: The z cut-buffer is used to temporarily store data!
 "
 "	double quotes
-imap ¡"! <C-V>"<C-V>"¡mark!<ESC>F"i
-vmap ¡"! "zc"<C-R>z"<ESC>
+imap ·"· <C-V>"<C-V>"·mark·<ESC>F"i
+vmap ·"· "zc"<C-R>z"<ESC>
 "	single quotes
-imap ¡'! <C-V>'<C-V>'¡mark!<ESC>F'i
-vmap ¡'! "zc'<C-R>z'<ESC>
+imap ·'· <C-V>'<C-V>'·mark·<ESC>F'i
+vmap ·'· "zc'<C-R>z'<ESC>
 "	stars
-imap ¡*! <C-V>*<C-V>*¡mark!<ESC>F*i
-vmap ¡*! "zc*<C-R>z*<ESC>
+imap ·*· <C-V>*<C-V>*·mark·<ESC>F*i
+vmap ·*· "zc*<C-R>z*<ESC>
 "	braces
-imap ¡(! <C-V>(<C-V>)¡mark!<ESC>F)i
-vmap ¡(! "zc(<C-R>z)<ESC>
+imap ·(· <C-V>(<C-V>)·mark·<ESC>F)i
+vmap ·(· "zc(<C-R>z)<ESC>
 "	braces - with padding
-imap ¡)! <C-V>(  <C-V>)¡mark!<ESC>F i
-vmap ¡)! "zc( <C-R>z )<ESC>
+imap ·)· <C-V>(  <C-V>)·mark·<ESC>F i
+vmap ·)· "zc( <C-R>z )<ESC>
 "	underlines
-imap ¡_! <C-V>_<C-V>_¡mark!<ESC>F_i
-vmap ¡_! "zc_<C-R>z_<ESC>
+imap ·_· <C-V>_<C-V>_·mark·<ESC>F_i
+vmap ·_· "zc_<C-R>z_<ESC>
 "	angle-brackets
-imap ¡<! <C-V><<C-V>>¡mark!<ESC>F>i
-vmap ¡<! "zc<<C-R>z><ESC>
+imap ·<· <C-V><<C-V>>·mark·<ESC>F>i
+vmap ·<· "zc<<C-R>z><ESC>
 "	angle-brackets with padding
-imap ¡>! <C-V><  <C-V>>¡mark!<ESC>F i
-vmap ¡>! "zc< <C-R>z ><ESC>
+imap ·>· <C-V><  <C-V>>·mark·<ESC>F i
+vmap ·>· "zc< <C-R>z ><ESC>
 "	square brackets
-imap ¡[! <C-V>[<C-V>]¡mark!<ESC>F]i
-vmap ¡[! "zc[<C-R>z]<ESC>
+imap ·[· <C-V>[<C-V>]·mark·<ESC>F]i
+vmap ·[· "zc[<C-R>z]<ESC>
 "	square brackets with padding
-imap ¡]! <C-V>[  <C-V>]¡mark!<ESC>F i
-vmap ¡]! "zc[ <C-R>z ]<ESC>
+imap ·]· <C-V>[  <C-V>]·mark·<ESC>F i
+vmap ·]· "zc[ <C-R>z ]<ESC>
 "	back-quotes
-imap ¡`! <C-V>`<C-V>`¡mark!<ESC>F`i
-vmap ¡`! "zc`<C-R>z`<ESC>
+imap ·`· <C-V>`<C-V>`·mark·<ESC>F`i
+vmap ·`· "zc`<C-R>z`<ESC>
 "	curlie brackets
-imap ¡{! <C-V>{<C-V>}¡mark!<ESC>F}i
-vmap ¡{! "zc{<C-R>z}<ESC>
+imap ·{· <C-V>{<C-V>}·mark·<ESC>F}i
+vmap ·{· "zc{<C-R>z}<ESC>
 "	new block bound by curlie brackets
-imap ¡}! <ESC>o{<C-M>¡mark!<ESC>o}¡mark!<ESC>^%¡jump!
-vmap ¡}! >'<O{<ESC>'>o}<ESC>^
+imap ·}· <ESC>o{<C-M>·mark·<ESC>o}·mark·<ESC>^%·jump·
+vmap ·}· >'<O{<ESC>'>o}<ESC>^
 "	spaces :-)
-imap ¡space! .  ¡mark!<ESC>F.xa
-vmap ¡space! "zc <C-R>z <ESC>
+imap ·space· .  ·mark·<ESC>F.xa
+vmap ·space· "zc <C-R>z <ESC>
 "	Nroff bold
-imap ¡nroffb! \fB\fP¡mark!<ESC>F\i
-vmap ¡nroffb! "zc\fB<C-R>z\fP<ESC>
+imap ·nroffb· \fB\fP·mark·<ESC>F\i
+vmap ·nroffb· "zc\fB<C-R>z\fP<ESC>
 "	Nroff italic
-imap ¡nroffi! \fI\fP¡mark!<ESC>F\i
-vmap ¡nroffi! "zc\fI<C-R>z\fP<ESC>
+imap ·nroffi· \fI\fP·mark·<ESC>F\i
+vmap ·nroffi· "zc\fI<C-R>z\fP<ESC>
 
 "
 " Extended / Combined macros
 "	mostly of use to programmers only
 "
 "	typical function call
-imap ¡();!  <C-V>(<C-V>);¡mark!<ESC>F)i
-vmap ¡();!  "zc(<C-R>z)<ESC>F)%i
-imap ¡(+);! <C-V>(  <C-V>);¡mark!<ESC>F i
-vmap ¡(+);! "zc( <C-R>z )<ESC>F)%i
+imap ·();·  <C-V>(<C-V>);·mark·<ESC>F)i
+vmap ·();·  "zc(<C-R>z)<ESC>F)%i
+imap ·(+);· <C-V>(  <C-V>);·mark·<ESC>F i
+vmap ·(+);· "zc( <C-R>z )<ESC>F)%i
 "	variables
-imap ¡$! $¡{!
-vmap ¡$! "zc${<C-R>z}<ESC>
+imap ·$· $·{·
+vmap ·$· "zc${<C-R>z}<ESC>
 "	function definition
-imap ¡func! ¡)!¡mark!¡jump!¡}!¡mark!<ESC>kk0¡jump!
-vmap ¡func! ¡}!'<kO¡)!¡mark!¡jump!<ESC>I
+imap ·func· ·)··mark··jump··}··mark·<ESC>kk0·jump·
+vmap ·func· ·}·'<kO·)··mark··jump·<ESC>I
 
 "
 " Special additions:
 "
 "	indent mail
-vmap ¡mail! :s/^[^ <TAB>]*$/> &/<C-M>
-map  ¡mail! :%s/^[^ <TAB>]*$/> &/<C-M>
+vmap ·mail· :s/^[^ <TAB>]*$/> &/<C-M>
+map  ·mail· :%s/^[^ <TAB>]*$/> &/<C-M>
 "	comment marked lines
-imap ¡#comment! <ESC>0i# <ESC>A
-vmap ¡#comment! :s/^/# /<C-M>
-map  ¡#comment! :s/^/# /<C-M>j
-imap ¡/comment! <ESC>0i// <ESC>A
-vmap ¡/comment! :s,^,// ,<C-M>
-map  ¡/comment! :s,^,// ,<C-M>j
-imap ¡*comment! <ESC>0i/* <ESC>A<TAB>*/<ESC>F<TAB>i
-vmap ¡*comment! :s,.*,/* &	*/,<C-M>
-map  ¡*comment! :s,.*,/* &	*/,<C-M>j
+imap ·#comment· <ESC>0i# <ESC>A
+vmap ·#comment· :s/^/# /<C-M>
+map  ·#comment· :s/^/# /<C-M>j
+imap ·/comment· <ESC>0i// <ESC>A
+vmap ·/comment· :s,^,// ,<C-M>
+map  ·/comment· :s,^,// ,<C-M>j
+imap ·*comment· <ESC>0i/* <ESC>A<TAB>*/<ESC>F<TAB>i
+vmap ·*comment· :s,.*,/* &	*/,<C-M>
+map  ·*comment· :s,.*,/* &	*/,<C-M>j
 "	uncomment marked lines (strip first few chars)
 "	doesn't work for /* comments */
-vmap ¡stripcomment! :s,^[ <TAB>]*[#>/]\+[ <TAB>]\=,,<C-M>
-map  ¡stripcomment! :s,^[ <TAB>]*[#>/]\+[ <TAB>]\=,,<C-M>j
+imap ·stripcomment· <ESC>:s,^[ <TAB>]*[#>/]\+[ <TAB>]\=,,<C-M>
+vmap ·stripcomment· :s,^[ <TAB>]*[#>/]\+[ <TAB>]\=,,<C-M>
+map  ·stripcomment· :s,^[ <TAB>]*[#>/]\+[ <TAB>]\=,,<C-M>j
 
 "
 " HTML Macros
 " ===========
 "
 "	turn the current word into a HTML tag pair, ie b -> <b></b>
-imap ¡Htag! <ESC>"zyiwciw<<C-R>z></<C-R>z>¡mark!<ESC>F<i
-vmap ¡Htag! "zc<¡mark!><C-R>z</¡mark!><ESC>`<¡jump!
+imap ·Htag· <ESC>"zyiwciw<<C-R>z></<C-R>z>·mark·<ESC>F<i
+vmap ·Htag· "zc<·mark·><C-R>z</·mark·><ESC>`<·jump·
 "
 "	set up a HREF
-imap ¡Href! <a href="¡mark!">¡mark!</a>¡mark!<ESC>`[¡jump!
-vmap ¡Href! "zc<a href="¡mark!"><C-R>z</a>¡mark!<ESC>`<¡jump!
+imap ·Href· <a href="·mark·">·mark·</a>·mark·<ESC>`[·jump·
+vmap ·Href· "zc<a href="·mark·"><C-R>z</a>·mark·<ESC>`<·jump·
 "
 "	set up a HREF name (tag)
-imap ¡Hname! <a name="¡mark!">¡mark!</a>¡mark!<ESC>`[¡jump!
-vmap ¡Hname! "zc<a name="¡mark!"><C-R>z</a>¡mark!<ESC>`<¡jump!
+imap ·Hname· <a name="·mark·">·mark·</a>·mark·<ESC>`[·jump·
+vmap ·Hname· "zc<a name="·mark·"><C-R>z</a>·mark·<ESC>`<·jump·
+
